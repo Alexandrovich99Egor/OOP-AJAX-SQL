@@ -25,6 +25,7 @@ class User
 
     private $pdo;
     private $err;
+    private $user_data;
 
     public $user_name;
     public $user_pass;
@@ -88,6 +89,8 @@ class User
     }
 
 
+
+
     //get all users 
     public function getAllUsers()
     {
@@ -99,10 +102,8 @@ class User
             $query = "SELECT * FROM `users`";
             $stmt = $this->pdo->query($query);
             $users = $stmt->fetchAll();
-            if (!empty($users)) {
-                foreach ($users as $id => $user) {
-                    echo $user[1];
-                }
+            if(!empty($users)&& isset($users)){
+                return $this->users = $users;
             }
         } catch (PDOException $e) {
             echo 'Ошибка при получении пользователей: ' . $e->getMessage() . '<br>';
@@ -110,7 +111,7 @@ class User
         }
     }
 
-
+  
 
     public function closeConnect(): void
     { {
@@ -121,6 +122,8 @@ class User
         }
 
     }
+
+
 
 
 }

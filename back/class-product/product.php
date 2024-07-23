@@ -35,7 +35,7 @@ class Product
 
 
 
-    protected static function paymentMethod()
+    protected static function paymentMethod(): array
     {
 
         return [
@@ -44,15 +44,14 @@ class Product
         ];
     }
 
-    public function setMethodPeyment($method_pay)
+    public function setMethodPeyment($method_pay):?string
     {
         $this->method_pay = $method_pay;
         $mathods_pay = self::paymentMethod();
         if (!empty($this->method_pay)) {
             foreach ($mathods_pay as $pay) {
-                if ($pay === $method_pay) {
-                    echo $pay;
-                }
+                echo $pay;
+                break;
             }
         }
     }
@@ -91,8 +90,10 @@ class Product
             foreach ($brands as $brand => $price) {
                 if ($this->price_client === $price) {
                     echo 'You can buy ' . $brand . '';
+                    break;
                 } else {
                     echo 'Sorry u cant buy product';
+                    break;
                 }
             }
 
@@ -127,4 +128,6 @@ class Product
 $new_product = new Product('Apple1', 'hz');
 $new_product->getPriceBrand();
 $new_product->canBuy(10222);
+$new_product->setMethodPeyment('VISA');
+
 
